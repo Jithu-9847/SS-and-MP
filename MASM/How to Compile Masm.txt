@@ -1,0 +1,7 @@
+Steps to Execute MASM Programs
+ 
+mount c: ~/Desktop/masm
+c:
+masm filename.asm
+link filename.obj;
+filename.exe
