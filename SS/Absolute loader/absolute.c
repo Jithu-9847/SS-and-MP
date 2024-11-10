@@ -6,7 +6,6 @@ int main()
 {
     char input[10],temp[10];  // To store the current record (H, T, or E)
     int address = 0; // Holds the current address
-    int start = 0;   // Program starting address
     int length = 0;  // Length of the program
     FILE *fp1, *fp2;
 
