@@ -5,8 +5,8 @@
 #include<string.h>
 void main() 
 {
-        char opcode[10],operand[10],label[10],code[10],ch;
-        int locctr,start,len,i=0,j=0,temp;
+        char opcode[10],operand[10],label[10],code[10],ch[10];
+        int locctr,start,len,i=0,j=0;
         FILE *fp1,*fp2,*fp3,*fp4;
         system("clear");
         fp1 = fopen("input.dat","r");
@@ -29,7 +29,7 @@ void main()
                 if(strcmp(label,"**")!=0)
                 fprintf(fp2,"%s\t%d\n",label,locctr);
                 rewind(fp4);
-                fscanf(fp4,"%s %d",code,&temp);
+                fscanf(fp4,"%s %s",code,ch);
                 while(strcmp(code,"END")!=0)
                 {
                         if(strcmp(opcode,code)==0)
@@ -37,7 +37,7 @@ void main()
                                 locctr+=3;
                                 break;
                         }
-                 fscanf(fp4,"%s %d",code,&temp);
+                 fscanf(fp4,"%s %s",code,ch);
                  
                 }
         if(strcmp(opcode,"WORD")==0)
@@ -56,11 +56,5 @@ void main()
         fclose(fp1);
         fclose(fp2);
         fclose(fp3);
-        fclose(fp4);
-
-         
-        
-         
+        fclose(fp4);         
 }
-
-        
