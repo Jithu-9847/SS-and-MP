@@ -1,0 +1,6 @@
+START   34 
+LDA     56
+STA     23
+LDCH    13
+STCH    45
+END     20

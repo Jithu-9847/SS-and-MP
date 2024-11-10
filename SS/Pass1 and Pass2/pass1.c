@@ -1,18 +1,18 @@
-// Program for pass 1 for 2 pass assembler
+// Program for pass 1 for 2 pass assembler using separate optab ( Changed code )
 
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-int main() 
+void main() 
 {
-        char opcode[10],operand[10],label[10],code[10][10],ch;
-        char mnemonic[10][10] = {"START","LDA","STA","LDCH","STCH","END"};
-        int locctr,start,len,i=0,j=0;
-        FILE *fp1,*fp2,*fp3;
+        char opcode[10],operand[10],label[10],code[10],ch;
+        int locctr,start,len,i=0,j=0,temp;
+        FILE *fp1,*fp2,*fp3,*fp4;
         system("clear");
         fp1 = fopen("input.dat","r");
         fp2 = fopen("symtab.dat","w");
         fp3 = fopen("out.dat","w");
+        fp4 = fopen("optab.dat","r");
         fscanf(fp1,"%s%s%s",label,opcode,operand);
         if(strcmp(opcode,"START")==0)
         {
@@ -28,16 +28,17 @@ int main()
                 fprintf(fp3,"%d",locctr);
                 if(strcmp(label,"**")!=0)
                 fprintf(fp2,"%s\t%d\n",label,locctr);
-                strcpy(code[i],mnemonic[j]);
-                while(strcmp(mnemonic[j],"END")!=0)
+                rewind(fp4);
+                fscanf(fp4,"%s %d",code,&temp);
+                while(strcmp(code,"END")!=0)
                 {
-                        if(strcmp(opcode,mnemonic[j])==0)
+                        if(strcmp(opcode,code)==0)
                         {
                                 locctr+=3;
                                 break;
                         }
-                strcpy(code[i],mnemonic[j]);
-                j++;
+                 fscanf(fp4,"%s %d",code,&temp);
+                 
                 }
         if(strcmp(opcode,"WORD")==0)
                 locctr+=3;
@@ -51,11 +52,15 @@ int main()
        fscanf(fp1,"%s%s%s",label,opcode,operand);
         }
         fprintf(fp3,"%d\t%s\t%s\t%s\n",locctr,label,opcode,operand);
-        fcloseall();
+        
+        fclose(fp1);
+        fclose(fp2);
+        fclose(fp3);
+        fclose(fp4);
 
          
         
-        return 0;
+         
 }
 
         
