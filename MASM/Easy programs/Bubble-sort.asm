@@ -36,7 +36,7 @@ READ:		MOV AH,01H
 		INC SI
 		DEC BL
 		JNZ READ
-		 
+		MOV BL,BH
 
 
 
