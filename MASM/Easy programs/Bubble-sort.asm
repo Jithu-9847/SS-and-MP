@@ -73,10 +73,6 @@ REP1:		MOV DL,[SI]
 		INC SI
 		DEC CL
 		JNZ REP1
-		MOV DL,[SI]
-		MOV AH,02H
-		INT 21H
-		
 		
 		MOV AH,4CH
 		INT 21H 
